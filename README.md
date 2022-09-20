@@ -1,2 +1,2 @@
 # ps-svg
-Examples of gnuplot script to produce svg image
+Examples of powershell script to produce svg image
