@@ -1,4 +1,13 @@
 #!/bin/bash
+
+#
+# svg_beg
+# Sparisoma Viridi | https://github.com/dudung
+#
+# 20220920 Create this script.
+#
+
+# define parameters
 xml_declaration="<?xml version='1.0'?>"
 xmlns="http://www.w3.org/2000/svg"
 xmlns_link="http://www.w3.org/1999/xlink"
@@ -9,10 +18,10 @@ ymax=100
 width=200
 height=200
 
+# print svg opening tag
 echo $xml_declaration
 echo "<svg"
 echo " xmlns=\"$xmlns\""
 echo " xmlns:link=\"$xmlns_link\""
-echo " viewbox=\"$xmin $ymin $xmax $ymax\""
+echo " viewBox=\"$xmin $ymin $xmax $ymax\""
 echo ">"
-#echo "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink= 'http://www.w3.org/1999/xlink' viewBox='0 0 300 100'>"

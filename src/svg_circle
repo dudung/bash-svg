@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#
+# svg_circle
+# Sparisoma Viridi | https://github.com/dudung
+#
+# 20220920 Create this script.
+# 2117 Can pass parameters cx cy r
+#
+
+# set default style
+stroke='#f00'
+fill='#afa'
+stroke_width='0.5px'
+
+# get command line arguments
+cx=$(echo $@ | cut -d' ' -f1 | cut -d'=' -f2)
+cy=$(echo $@ | cut -d' ' -f2 | cut -d'=' -f2)
+r=$(echo $@ | cut -d' ' -f3 | cut -d'=' -f2)
+
+# print svg closing tag.
+echo "<circle cx='$cx' cy='$cy' r='$r' stroke='$stroke' fill='$fill' stroke-width='$stroke_width' />"
