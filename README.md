@@ -1,5 +1,5 @@
-# ps-svg
-Examples of powershell script to produce svg image
+# bash-svg
+Examples of bash script to produce svg image
 
 
 # folders
