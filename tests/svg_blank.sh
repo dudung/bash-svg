@@ -1,4 +1,8 @@
-$path/svg_beg
-$path/svg_end
+# define path to source
+sp=../src
 
-echo $PATH
+# begin svg tag
+$sp/svg_beg
+
+# end svg tag
+$sp/svg_end

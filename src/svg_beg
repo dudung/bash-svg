@@ -1,2 +1,18 @@
 #!/bin/bash
-echo "<svg>"
+xml_declaration="<?xml version='1.0'?>"
+xmlns="http://www.w3.org/2000/svg"
+xmlns_link="http://www.w3.org/1999/xlink"
+xmin=0
+ymin=0
+xmax=100
+ymax=100
+width=200
+height=200
+
+echo $xml_declaration
+echo "<svg"
+echo " xmlns=\"$xmlns\""
+echo " xmlns:link=\"$xmlns_link\""
+echo " viewbox=\"$xmin $ymin $xmax $ymax\""
+echo ">"
+#echo "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink= 'http://www.w3.org/1999/xlink' viewBox='0 0 300 100'>"
