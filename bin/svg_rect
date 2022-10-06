@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#
+# svg_rect
+# Sparisoma Viridi | https://github.com/dudung/bash-svg
+#
+# 20221006 Start this script.
+#
+
+# check number of arguments
+if [ $# -lt 4 ]
+then
+  echo "Usage: svg_rec x=num y=num w=num h=num"
+  echo "x      coordinate from left margin"
+  echo "y      coordinate from top margin"
+  echo "w      width of rectange"
+  echo "h      height of rectangle"
+  echo "num    any positif numerical values"
+  exit
+fi
+
+# convert all arguments to string
+args="'$*'"
+
+# check existence of "x=" in arguments
+xs=$(echo $args | grep "x=")
+if [ -n "$xs" ]; then xb=true; else xb=false; fi
+
+# check existence of "y=" in arguments
+ys=$(echo $args | grep "y=")
+if [ -n "$ys" ]; then yb=true; else yb=false; fi
+
+# check existence of "w=" in arguments
+ws=$(echo $args | grep "w=")
+if [ -n "$ws" ]; then wb=true; else wb=false; fi
+
+# check existence of "h=" in arguments
+hs=$(echo $args | grep "h=")
+if [ -n "$hs" ]; then hb=true; else hb=false; fi
