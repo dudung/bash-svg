@@ -23,17 +23,23 @@ fi
 args="'$*'"
 
 # check existence of "x=" in arguments
-xs=$(echo $args | grep "x=")
-if [ -n "$xs" ]; then xb=true; else xb=false; fi
+if [ -n "$(echo $args | grep 'x=')" ]; then xb=1; else xb=0; fi
 
 # check existence of "y=" in arguments
-ys=$(echo $args | grep "y=")
-if [ -n "$ys" ]; then yb=true; else yb=false; fi
+if [ -n "$(echo $args | grep 'y=')" ]; then yb=2; else yb=0; fi
 
 # check existence of "w=" in arguments
-ws=$(echo $args | grep "w=")
-if [ -n "$ws" ]; then wb=true; else wb=false; fi
+if [ -n "$(echo $args | grep 'w=')" ]; then wb=4; else wb=0; fi
 
 # check existence of "h=" in arguments
-hs=$(echo $args | grep "h=")
-if [ -n "$hs" ]; then hb=true; else hb=false; fi
+if [ -n "$(echo $args | grep 'h=')" ]; then hb=8; else hb=0; fi
+
+echo "$xb $yb $wb $hb"
+
+mis=""
+if [ -z "$(echo $args | grep 'x=')" ]; then mis=$mis" x"; fi
+if [ -z "$(echo $args | grep 'y=')" ]; then mis=$mis" y"; fi
+if [ -z "$(echo $args | grep 'w=')" ]; then mis=$mis" w"; fi
+if [ -z "$(echo $args | grep 'h=')" ]; then mis=$mis" h"; fi
+
+echo $mis
