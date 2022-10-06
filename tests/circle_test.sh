@@ -1,13 +1,13 @@
 #!/bin/bash
 
 #
-# simple_circle.sh
+# circle_test.sh
 # create a circle with default stroke and fill colors.
 #
 # Sparisoma Viridi | https://github.com/dudung
 #
 # 20220920 Create this script.
-# 20221006 Change sp from ../src to ../bin.
+# 20221006 Change sp from ../src to ../bin, rename from simple_circle.h.
 #
 
 # define path to source

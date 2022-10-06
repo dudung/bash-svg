@@ -5,22 +5,38 @@
 # Sparisoma Viridi | https://github.com/dudung/bash-svg
 #
 # 20221006 Start this script, create arguments and usage.
+# 20221007
+# 0253 Pass exit code but confuse with echoed messages.
+# 0310 Output error messsage to logfile.
+# 0318 List exit status.
+# 0526 Produce a svg file with default style.
 #
+
+# define exit status
+# 0 success status
+# 1 insufficent number of arguments
+# 2 missing one or more parameters (x, y, w, h)
+
+# set default filenames for error messages
+logfile="log.md"
 
 # check number of arguments
 if [ $# -lt 4 ]
 then
-  echo "Usage: svg_rec x=num y=num w=num h=num"
-  echo "x      coordinate from left margin"
-  echo "y      coordinate from top margin"
-  echo "w      width of rectange"
-  echo "h      height of rectangle"
-  echo "num    any positif numerical values"
-  exit
+  es=1
+  echo "" >> $logfile
+  echo "exitcode = $es" >> $logfile
+  echo "Usage: svg_rec x=num y=num w=num h=num" >> $logfile
+  echo "x      coordinate from left margin" >> $logfile
+  echo "y      coordinate from top margin" >> $logfile
+  echo "w      width of rectange" >> $logfile
+  echo "h      height of rectangle" >> $logfile
+  echo "num    any positif numerical values" >> $logfile
+  exit $es
 fi
 
 # convert all arguments to string
-args="'$*'"
+args="$*"
 
 # check existence of 'x=','y=', 'w=', 'h=' in arguments
 if [ -n "$(echo $args | grep 'x=')" ]; then xb=1; else xb=0; fi
@@ -39,9 +55,44 @@ if [ -z "$(echo $args | grep 'h=')" ]; then msg=$msg" h"; fi
 # show errow message
 if [ $status -lt 15 ]
 then
-  echo "error:" $msg
-  exit
+  es=2
+  echo "" >> $logfile
+  echo "exitcode = $es" >> $logfile
+  echo "error:" $msg >> $logfile
+  exit $es
 fi
 
 # create svg image
-echo "Create svg"
+es=0
+echo "" >> $logfile
+echo "exitcode = $es" >> $logfile
+echo "Create svg" >> $logfile
+
+v=$(echo $args" " | cut -d "y" -f 2)
+v=$(echo $v | cut -d "=" -f 2)
+v=$(echo $v | cut -d " " -f 1)
+echo "y = $v" >> $logfile
+y=$v
+
+v=$(echo $args" " | cut -d "w" -f 2)
+v=$(echo $v | cut -d "=" -f 2)
+v=$(echo $v | cut -d " " -f 1)
+echo "w = $v" >> $logfile
+w=$v
+
+v=$(echo $args" " | cut -d "x" -f 2)
+v=$(echo $v | cut -d "=" -f 2)
+v=$(echo $v | cut -d " " -f 1)
+echo "x = $v" >> $logfile
+x=$v
+
+v=$(echo $args" " | cut -d "h" -f 2)
+v=$(echo $v | cut -d "=" -f 2)
+v=$(echo $v | cut -d " " -f 1)
+echo "h = $v" >> $logfile
+h=$v
+
+svg="<rect x='$x' y='$y' width='$w' height='$h' />"
+echo $svg
+
+exit $es
