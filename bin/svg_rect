@@ -4,7 +4,7 @@
 # svg_rect
 # Sparisoma Viridi | https://github.com/dudung/bash-svg
 #
-# 20221006 Start this script.
+# 20221006 Start this script, create arguments and usage.
 #
 
 # check number of arguments
@@ -22,24 +22,26 @@ fi
 # convert all arguments to string
 args="'$*'"
 
-# check existence of "x=" in arguments
+# check existence of 'x=','y=', 'w=', 'h=' in arguments
 if [ -n "$(echo $args | grep 'x=')" ]; then xb=1; else xb=0; fi
-
-# check existence of "y=" in arguments
 if [ -n "$(echo $args | grep 'y=')" ]; then yb=2; else yb=0; fi
-
-# check existence of "w=" in arguments
 if [ -n "$(echo $args | grep 'w=')" ]; then wb=4; else wb=0; fi
-
-# check existence of "h=" in arguments
 if [ -n "$(echo $args | grep 'h=')" ]; then hb=8; else hb=0; fi
+status=$(expr $xb + $yb + $wb + $hb)
 
-echo "$xb $yb $wb $hb"
+# create message of missing arguments
+msg="missing"
+if [ -z "$(echo $args | grep 'x=')" ]; then msg=$msg" x"; fi
+if [ -z "$(echo $args | grep 'y=')" ]; then msg=$msg" y"; fi
+if [ -z "$(echo $args | grep 'w=')" ]; then msg=$msg" w"; fi
+if [ -z "$(echo $args | grep 'h=')" ]; then msg=$msg" h"; fi
 
-mis=""
-if [ -z "$(echo $args | grep 'x=')" ]; then mis=$mis" x"; fi
-if [ -z "$(echo $args | grep 'y=')" ]; then mis=$mis" y"; fi
-if [ -z "$(echo $args | grep 'w=')" ]; then mis=$mis" w"; fi
-if [ -z "$(echo $args | grep 'h=')" ]; then mis=$mis" h"; fi
+# show errow message
+if [ $status -lt 15 ]
+then
+  echo "error:" $msg
+  exit
+fi
 
-echo $mis
+# create svg image
+echo "Create svg"
